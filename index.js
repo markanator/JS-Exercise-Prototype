@@ -52,7 +52,6 @@ Person.prototype.eat = function (food){
   if (this.stomach.length <= 9){
 
     return this.stomach.push(food);
-
   } else {
 
     return null;
@@ -63,13 +62,11 @@ Person.prototype.eat = function (food){
 Person.prototype.poop = function (){
 
   return this.stomach.splice(0, this.stomach.length)
-
 };
 
 Person.prototype.toString = function (){
 
   return `${this.name}, ${this.age}`;
-
 };
 
 /*
@@ -103,11 +100,13 @@ Car.prototype.drive = function (distance){
 
   let mpgUsed = distance / this.tank;
 
-  if (this.tank - distance >= 0){
+  if (this.tank - distance > 0){
     //take distance DIVIDE BY current tank_level to get mpg
     this.odometer += distance;
     this.tank += distance;
+
   } else {
+
     return console.log(`I ran out of fuel at ${this.odometer} miles!`);
   }
 
@@ -120,16 +119,18 @@ Car.prototype.drive = function (distance){
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby(favoriteToy) {
-  this.name = name;
-  this.age  = age;
+function Baby (name,age,favoriteToy) {
+  //ref Person class
+  Person.call(this, name, age);
   this.favoriteToy = favoriteToy;
 }
+// create subclasss
+Baby.prototype = Object.create(Person.prototype);
 
-
-Baby.prototype.play = function(){
+//assign play function
+Baby.prototype.play = function(favoriteToy){
   return `Playing with ${this.favoriteToy}`;
-}
+};
 
 /* 
   TASK 4
