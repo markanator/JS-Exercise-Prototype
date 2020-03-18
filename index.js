@@ -89,7 +89,6 @@ function Car(model,milesPerGallon) {
   this.milesPerGallon = milesPerGallon;
   this.tank           = 0;
   this.odometer       = 0;
-
 }
 
 Car.prototype.fill = function(gallons){
@@ -97,20 +96,18 @@ Car.prototype.fill = function(gallons){
 }
 
 Car.prototype.drive = function (distance){
-
-  let mpgUsed = distance / this.tank;
-
-  if (this.tank - distance > 0){
+  
+  let mpgUsed = distance / this.milesPerGallon;
+  if (mpgUsed >= this.tank){
     //take distance DIVIDE BY current tank_level to get mpg
-    this.odometer += distance;
-    this.tank += distance;
-
-  } else {
-
-    return console.log(`I ran out of fuel at ${this.odometer} miles!`);
+    this.odometer += this.tank * this.milesPerGallon;
+    this.tank = 0;
+    return `I ran out of fuel at ${this.odometer} miles!`;
   }
+  this.tank -= mpgUsed;
+  this.odometer += distance;
+};
 
-}
 
 /*
   TASK 3
@@ -120,14 +117,16 @@ Car.prototype.drive = function (distance){
         + Should return a string "Playing with x", x being the favorite toy.
 */
 function Baby (name,age,favoriteToy) {
-  //ref Person class
+  //ref Person ParentClass
   Person.call(this, name, age);
+  // add custom params
   this.favoriteToy = favoriteToy;
 }
-// create subclasss
+
+  // create subclasss
 Baby.prototype = Object.create(Person.prototype);
 
-//assign play function
+  //assign play function to Baby subClass
 Baby.prototype.play = function(favoriteToy){
   return `Playing with ${this.favoriteToy}`;
 };
