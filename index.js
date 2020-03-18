@@ -12,9 +12,11 @@ function Airplane(name) {
   this.name = name;
   this.isFlying = false;
 }
+
 Airplane.prototype.takeOff = function () {
   this.isFlying = true;
 };
+
 Airplane.prototype.land = function () {
   this.isFlying = false;
 };
@@ -96,7 +98,7 @@ Car.prototype.fill = function(gallons){
 }
 
 Car.prototype.drive = function (distance){
-  
+
   let mpgUsed = distance / this.milesPerGallon;
   if (mpgUsed >= this.tank){
     //take distance DIVIDE BY current tank_level to get mpg
@@ -135,10 +137,10 @@ Baby.prototype.play = function(favoriteToy){
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. Window/ Global this refers to JS
+  2. Implicit refers to the obj that is left of the dot:: obj.func();
+  3. New Binding, used when creating new instances of Classes:: new Monster();
+  4. Explicit Binding, refers to the obj that is being passed through instead of the obj before the dot
 */
 
 
